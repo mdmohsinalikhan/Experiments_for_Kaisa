@@ -4,6 +4,6 @@ gcc -c -g smallpresent.c
 gcc -c -g sbox.c
 gcc -c -g ssaPreparation.c
 gcc -c -g ssaExperiments.c
-gcc -o smallpresent encryptionFunctions.o keyGenerationFunctions.o sbox.o smallpresent.o ssaPreparation.o ssaExperiments.o
+gcc -o smallpresent encryptionFunctions.o keyGenerationFunctions.o sbox.o smallpresent.o ssaPreparation.o ssaExperiments.o -lm
 ./smallpresent
 

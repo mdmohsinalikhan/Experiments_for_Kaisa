@@ -11,13 +11,14 @@
    Then it takes lest significant min(64,(BLOCKLENGTH*8-NOFIB)) number of bits from the integer freebits and set them as free bits of plaintext
    */
 
-void prepareplaintext(unsigned char **plaintext_states,unsigned int **trails,unsigned long long int fixation,unsigned long long int freebits)
+void prepareplaintext(unsigned char **plaintext_states,unsigned int **trails,unsigned long long int freebits)
 {
 int i =0;
 int j = 0;
 int target_byte_position = 0;
 int target_bit_position = 0;
 unsigned char ith_fixed_bit_value_of_input_trail = 0x00;
+int no_of_free_bits = BLOCKLENGTH*8;
 
 	/*First initialize the plaintext_state to all zero*/
 
@@ -30,32 +31,6 @@ unsigned char ith_fixed_bit_value_of_input_trail = 0x00;
 
 	}
 
-	
-	for(i = 0;i < NOFIB; i++)
-	{
-		/* There are NOFIB number of bits in the input trail. The bits from the bitstring of the integer "fixation" will be set
-		   as the fixed bits of the input of the trail. The LSB and MSB of the integer "fixation" will become the first and last bits
-		   of the input trail respectively */
-		ith_fixed_bit_value_of_input_trail = (fixation >> i) & 0x0000000000000001;
-		/* ith fixed bit of the input trail should be fixed at some target bit position of the plaintext. 
-		   This target bit position is mentioned trails[0][i]. Now the task is to find this bit position in plaintext_states[0] array  */
-		target_byte_position = trails[0][i]/8;
-		target_bit_position = trails[0][i]%8;
-
-		/* Fixing the bit value to the bit position of the plaintext*/
-		plaintext_states[0][target_byte_position] = plaintext_states[0][target_byte_position] ^ (ith_fixed_bit_value_of_input_trail << target_bit_position);
-	}
-
-
-	int no_of_free_bits = 0;
-	if(BLOCKLENGTH*8-NOFIB > 64)
-	{
-		no_of_free_bits = 64;
-	}
-	else
-	{
-		no_of_free_bits = BLOCKLENGTH*8-NOFIB;
-	}
 
 	for(i = 0;i < no_of_free_bits; i++)
 	{
@@ -67,21 +42,14 @@ unsigned char ith_fixed_bit_value_of_input_trail = 0x00;
 		ith_fixed_bit_value_of_input_trail = (freebits >> i) & 0x0000000000000001;
 		/* ith fixed bit of the input trail should be fixed at some target bit position of the plaintext. 
 		   This target bit position is mentioned trails[0][i]. Now the task is to find this bit position in plaintext_states[0] array  */
-		target_byte_position = trails[2][i]/8;
-		target_bit_position = trails[2][i]%8;
+		target_byte_position = i/8;
+		target_bit_position = i%8;
 
 		/* Fixing the bit value to the bit position of the plaintext*/
 		plaintext_states[0][target_byte_position] = plaintext_states[0][target_byte_position] ^ (ith_fixed_bit_value_of_input_trail << target_bit_position);
 
 	}
 	
-
-	/*for(i = 0; i < BLOCKLENGTH; i++)
-	{
-		plaintext_states[0][i] = 0x00;
-	} */
-
-	//free(temp_state);
 
 }
 
@@ -92,7 +60,7 @@ unsigned int** preparingtheTrail()
 	unsigned int x = 0;
 	unsigned int **trails;
 
-	trails = (unsigned int **)malloc(sizeof(unsigned int)*4);
+	trails = (unsigned int **)malloc(sizeof(unsigned int*)*4);
 	
 	trails[0] = (unsigned int *)malloc(sizeof(unsigned int)*NOFIB);
 	trails[1] = (unsigned int *)malloc(sizeof(unsigned int)*NOFOB);
@@ -182,6 +150,7 @@ free(trails[0]);
 free(trails[1]);
 free(trails[2]);
 free(trails[3]);
+
 free(trails);
 
 }

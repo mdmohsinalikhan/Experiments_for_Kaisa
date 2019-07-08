@@ -37,6 +37,48 @@ return keys;
 }
 
 
+void chooseAndAssignithKey(unsigned char **keys,int ithkey)
+{
+
+	int i = 0;
+
+	//initialize the master key
+
+
+	//keys[0][0] = KEYS00; 
+	//keys[0][1] = KEYS01; 
+	//keys[0][2] = KEYS02; 
+	//keys[0][3] = KEYS03; 
+	//keys[0][4] = KEYS04;
+	//keys[0][5] = KEYS05; 
+	//keys[0][6] = KEYS06; 
+	//keys[0][7] = KEYS07; 
+	//keys[0][8] = KEYS08; 
+	//keys[0][9] = KEYS09;
+
+
+	keys[0][0] = (unsigned char)(rand() % 256); 
+	keys[0][1] = (unsigned char)(rand() % 256); 
+	keys[0][2] = (unsigned char)(rand() % 256); 
+	keys[0][3] = (unsigned char)(rand() % 256); 
+	keys[0][4] = (unsigned char)(rand() % 256);
+	keys[0][5] = (unsigned char)(rand() % 256); 
+	keys[0][6] = (unsigned char)(rand() % 256); 
+	keys[0][7] = (unsigned char)(rand() % 256); 
+	keys[0][8] = (unsigned char)(rand() % 256); 
+	keys[0][9] = (unsigned char)(rand() % 256);
+
+	for(i = 1; i <= ROUND; i++)
+	{
+		rotateKey61bitLeft(i, keys);
+		applySBoxOnKey(i, keys);
+		addRoundCounterOnKey(i, keys);
+	}
+
+
+}
+
+
 void rotateKey61bitLeft(int r,unsigned char **keys)
 {
 	keys[r][0]=keys[r-1][2] >> 3;

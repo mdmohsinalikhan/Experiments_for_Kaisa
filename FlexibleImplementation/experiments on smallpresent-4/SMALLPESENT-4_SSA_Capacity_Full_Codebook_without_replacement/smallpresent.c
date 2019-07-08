@@ -24,12 +24,13 @@ int main()
 
 	/* Start: An example, how plaintext is prepared and encrypted 
 		  To test, uncomment the lines with three slashes */
-		///prepareplaintext(plaintext_states,trails,0xFF,0x00);
+		///prepareplaintext(plaintext_states,trails,0);
 
 		/* actual encryption is happening. Ciphertext is found in the plaintext 
 		state after the last round */
+		///unsigned long long int ***key_vs_output_counts;
 		
-		///encryption(plaintext_states,keys);
+		///encryption(plaintext_states,keys,key_vs_output_counts,trails);	
 	/* End: An example, how plaintext is prepared and encrypted */
 
 	SSA(plaintext_states,keys,trails);

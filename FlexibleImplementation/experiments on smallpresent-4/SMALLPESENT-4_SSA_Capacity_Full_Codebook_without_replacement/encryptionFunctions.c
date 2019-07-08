@@ -28,10 +28,11 @@ unsigned char **allocate_Memory_for_plaintext_or_ciphertext()
 return states;
 }
 
-void encryption(unsigned char **plaintext_states,unsigned char **keys,unsigned long long int fixation, unsigned long long int ***fixations_vs_output_count,unsigned int **trails)
+void encryption(unsigned char **plaintext_states,unsigned char **keys, int ithkey, unsigned long long int ***key_vs_output_count,unsigned int **trails)
 {
 
 	int i = 0;
+	
 
 	//printf("Plaintext: "); printState(i,plaintext_states);
 	for(i = 1; i <= ROUND; i++)
@@ -39,11 +40,12 @@ void encryption(unsigned char **plaintext_states,unsigned char **keys,unsigned l
 		addRoundKey(i,plaintext_states,keys);
 		applySBox(i,plaintext_states);
 		pbox(i, plaintext_states);
-		//printf("Current state after sbox of %d round: ",i); 	printState(i,plaintext_states);
+		//printf("Current state after %d round: ",i); 	printState(i,plaintext_states);
 		
 		/*The below method is called for bookkeeping the information about every pair of plaintext-ciphertext
 		  after every round*/
-		postRoundSSABookKeping(i, plaintext_states,fixation,fixations_vs_output_count,trails);
+		postRoundSSABookKeping(i, plaintext_states,ithkey,key_vs_output_count,trails);
+		
 
 	}
 
