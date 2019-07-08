@@ -69,14 +69,20 @@ unsigned int** preparingtheTrail()
 
 
 	/*START: Hard coding the SSA trail inside the code. However, in below one can take it from user from standard input*/
-	trails[0][0] = 13; 
-	trails[0][1] = 14; 
-	trails[0][2] = 15; 
+	trails[0][0] = 9; 
+	trails[0][1] = 10; 
+	trails[0][2] = 11; 
+	trails[0][3] = 13; 
+	trails[0][4] = 14; 
+	trails[0][5] = 15; 
 
 
-	trails[1][0] = 13; 
-	trails[1][1] = 14; 
-	trails[1][2] = 15;
+	trails[1][0] = 9; 
+	trails[1][1] = 10; 
+	trails[1][2] = 11;
+	trails[1][3] = 13; 
+	trails[1][4] = 14; 
+	trails[1][5] = 15; 
 
 	/*End: Hard coding the SSA trail inside the code. However, in below one can take it from user from standard input*/
 	
