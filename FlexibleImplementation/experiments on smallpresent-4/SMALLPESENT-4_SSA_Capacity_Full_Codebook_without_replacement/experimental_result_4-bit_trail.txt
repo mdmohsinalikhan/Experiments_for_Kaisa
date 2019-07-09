@@ -1,0 +1,44 @@
+SMALLPRESENT-[4]
+ - Bit positions at the input of the trail (starting from zero from the right):5 6 9 10  (See Figure 6.2 in my masters thesis)
+ - Bit positions at the output of the trail (starting from zero from the right):5 6 9 10 (See Figure 6.2 in my masters thesis)
+ - All the masterkeys are chosen randomly with replacement. Total number of keys used: 2^14
+ 
+Below, we print the result from this SSA experiment 
+ -  It prints the average SSA capacity of the disribution of the 8 bits (4 bits from the plaintext and 4 bits from the ciphertext) of the trail, computed over the used keys.
+ -  It prints the variance of SSA capacities over all the used keys
+
+
+
+Round	Avg_C_a	(log_2)	Exp_Vari_C_a (log_2)
+0	0.00000000	-inf 
+1	0.32192809	-inf 
+2	-3.53239445	-inf 
+3	-5.59935704	-16.863410258497 
+4	-7.34741637	-20.195714480735 
+5	-7.94638755	-22.347879393638 
+6	-8.10247633	-22.974351606163 
+7	-8.16520564	-23.125242549483 
+8	-8.18132471	-23.192618109086 
+9	-8.18604582	-23.178003235263 
+10	-8.18638752	-23.165354153340 
+11	-8.18811392	-23.155339081696 
+12	-8.18448227	-23.191743542716 
+13	-8.18719201	-23.199148646298 
+14	-8.18550577	-23.188032982693 
+15	-8.18687441	-23.199106858465 
+16	-8.18356177	-23.195842943298 
+17	-8.18529613	-23.171763106078 
+18	-8.18543329	-23.165366518304 
+19	-8.18679644	-23.177757146066 
+20	-8.18717056	-23.181627442588 
+21	-8.18722791	-23.182885170384 
+22	-8.18670693	-23.214490903596 
+23	-8.18603468	-23.183826929565 
+24	-8.18514342	-23.163324312088 
+25	-8.18638696	-23.196973294621 
+26	-8.18685346	-23.190071291700 
+27	-8.18402746	-23.176140726187 
+28	-8.18498258	-23.173010906496 
+29	-8.18717964	-23.192609111638 
+30	-8.18758036	-23.216543422555 
+31	-8.18546084	-23.204157025805 
