@@ -8,7 +8,7 @@
 #define NOFIB 4 //No of Fixed input bits
 #define NOFOB 4 //No of Fixed output bits
 #define SAMPLESIZEINBIT 12 //it is set to 4*n - NOFIB when full code book is used. Otherwise it has to be set manually
-#define NOOFKEYS pow(2,5)
+#define NOOFKEYS pow(2,14)
 #define LOG2E 1.44269504088896340736 // log2(e)
 
 //defining the masterkey
