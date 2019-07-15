@@ -57,6 +57,8 @@ unsigned long long int ***countKeyVsOutput(unsigned char **plaintext_states, uns
 	unsigned long long int total_freebit_plaintexts = pow(2,BLOCKLENGTH*8); // the number of plaintexts that will be encrypted. In this experiment, it is the full codebook
 	unsigned long long int	***key_vs_output_count = (unsigned long long int***)malloc(sizeof(unsigned long long int**)*NOOFKEYS);
 
+	//printf("The total number of possible output is: %d\n", total_outputs);
+
 	for(i = 0;i < NOOFKEYS; i++)
 	{
 		key_vs_output_count[i] = (unsigned long long int**)malloc(sizeof(unsigned long long int*)*(ROUND+1));
@@ -87,8 +89,11 @@ unsigned long long int ***countKeyVsOutput(unsigned char **plaintext_states, uns
 		chooseAndAssignithKey(keys,i);
 		printMasterKey(keys); // prints the master key which just have been chosen in the previous step
 
-		for(freebits =0; freebits < total_freebit_plaintexts; freebits++)
+
+		for(freebits = 0; freebits < total_freebit_plaintexts; freebits++)
 		{
+
+
 
 			prepareplaintext(plaintext_states,trails,freebits); /* the bits of freebits variable are encoded as the bits of plaintext. 
 										since no fixation is used in this experiment, the information 
@@ -136,10 +141,12 @@ void postRoundSSABookKeping(int round,unsigned char **plaintext_states,int key_r
 	unsigned long long int value_at_input_output_of_trail = 0;
 	value_at_output_of_trail = evaluateOutputOfTrail(round,plaintext_states,trails); //checking the value of eta;
 	value_at_input_of_trail = evaluateInputOfTrail(0,plaintext_states,trails);
+	
 	value_at_input_output_of_trail = (value_at_input_of_trail << NOFOB) ^ value_at_output_of_trail; // leftshift the input bits so that the output bits have space to be xored
 	/* because, in this experiment, the distribution for which we compute the capacity is : the distribution of the bits at the plaintext and chiphertext of the trail. 
 	In the experiments of my masters thesis, we were interested in the distribution of the bits in ciphertext of the trail */
 	key_vs_output_count[key_round_zero][round][value_at_input_output_of_trail] = key_vs_output_count[key_round_zero][round][value_at_input_output_of_trail] + 1;
+	//printf("Value at the input of the trail: %llu and value at the output of the trail: %llu and value at the input output combined: %llu\n",value_at_input_of_trail, value_at_output_of_trail,value_at_input_output_of_trail); // for debugging
 
 
 	// following lines of code is used to test if extracting bits from the trail is working okay or not	
@@ -181,7 +188,7 @@ unsigned int target_input_bit = 0;
 unsigned long long int bit_value_at_input_bit_position = 0x00;
 unsigned long long int x = 0;
 
-	for(j = 0;j < NOFOB; j++)
+	for(j = 0;j < NOFIB; j++)
 	{
 		target_input_byte = trails[0][j]/8;
 		target_input_bit = trails[0][j]%8;
