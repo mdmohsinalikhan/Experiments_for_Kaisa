@@ -326,6 +326,8 @@ long double mean = 0.0, variance = 0.0;
 	{
 		mean = -1.0*log(ssa_capacities_mean_variance_table[i][0])*LOG2E;
 		variance = -1.0*log(ssa_capacities_mean_variance_table[i][1])*LOG2E;
+		//mean = ssa_capacities_mean_variance_table[i][0];
+		//variance = ssa_capacities_mean_variance_table[i][1];
 		printf("%d	%.8Lf	%.12Lf \n",i,mean,variance);
 	}
 

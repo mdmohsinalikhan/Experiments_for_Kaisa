@@ -181,7 +181,7 @@ unsigned int target_input_bit = 0;
 unsigned long long int bit_value_at_input_bit_position = 0x00;
 unsigned long long int x = 0;
 
-	for(j = 0;j < NOFOB; j++)
+	for(j = 0;j < NOFIB; j++)
 	{
 		target_input_byte = trails[0][j]/8;
 		target_input_bit = trails[0][j]%8;
